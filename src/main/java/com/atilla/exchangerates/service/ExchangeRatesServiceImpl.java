@@ -42,9 +42,7 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
 
 	private RateProvider rateProvider;
 	private final QueryHistoryRepository queryHistoryRepository;
-	private TimeProvider timeProvider; 
-
-	// private static final ObjectMapper objectMapper = new ObjectMapper();
+	private TimeProvider timeProvider;
 
 	@Autowired
 	public ExchangeRatesServiceImpl(QueryHistoryRepository queryHistoryRepository, TimeProvider timeProvider,
@@ -58,18 +56,18 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
 	public RateTrendDTO exchangeRate(String date, CurrencyEnum baseCurrency, CurrencyEnum targetCurrency) {
 
 		Calendar calendarParam = checkDate(date);
-		 
+
 		RateTrendDTO rateTrendDTO = new RateTrendDTO();
 
 		try {
 			// excluding weekends
 			// provider service has a feature for excluding weekends. If we subtract 6 days
 			// we get the last 5 days without weekend
-			calendarParam.add(Calendar.DATE, -6); 			
-			
+			calendarParam.add(Calendar.DATE, -6);
+
 			StringBuilder sbStartAt = new StringBuilder();
 			sbStartAt.append(calendarParam.get(Calendar.YEAR)).append("-");
-			sbStartAt.append(calendarParam.get(Calendar.MONTH)+1).append("-");
+			sbStartAt.append(calendarParam.get(Calendar.MONTH) + 1).append("-");
 			sbStartAt.append(calendarParam.get(Calendar.DAY_OF_MONTH));
 
 			RateListDTO rateList = rateProvider.callProviderApi(baseCurrency, sbStartAt.toString(), date);
@@ -112,7 +110,6 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
 
 		if (date == null || date.length() != 10)
 			throw new InvalidParameterException(ERROR_INVALID_DATE);
-	 
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -130,9 +127,8 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
 		}
 
 		Calendar calendarParam = Calendar.getInstance();
-		calendarParam.set(localDate.getYear(), localDate.getMonthValue()-1, localDate.getDayOfMonth());
-	 
-	 
+		calendarParam.set(localDate.getYear(), localDate.getMonthValue() - 1, localDate.getDayOfMonth());
+
 		Calendar calendarYesterday = Calendar.getInstance();
 		calendarYesterday.add(Calendar.DATE, -1);
 

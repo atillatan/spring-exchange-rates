@@ -1,7 +1,9 @@
 package com.atilla.exchangerates.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
- 
+
 import com.atilla.exchangerates.common.AppConstants;
+import com.atilla.exchangerates.common.QueryHistoryDTO;
 import com.atilla.exchangerates.domain.QueryHistory;
 import com.atilla.exchangerates.service.QueryHistoryService;
 
@@ -36,21 +39,44 @@ public class QueryHistoryControler {
 
 	private final QueryHistoryService queryHistoryService;
 
+	private final ModelMapper modelMapper=new ModelMapper();
+
 	@Autowired
-	public QueryHistoryControler(QueryHistoryService queryHistoryService) {
+	public QueryHistoryControler(QueryHistoryService queryHistoryService
+			//, ModelMapper modelMapper
+			) {
 		this.queryHistoryService = queryHistoryService;
+		//this.modelMapper = modelMapper;
 	}
 
 	@GetMapping("/daily/{year}/{month}/{day}")
-	public List<QueryHistory> daily(@PathVariable String year, @PathVariable String month, @PathVariable String day) {
+	public List<QueryHistoryDTO> daily(@PathVariable String year, @PathVariable String month,
+			@PathVariable String day) {
 		logger.info(String.format("Incoming request -> year: %s, month:%s, day:%s", year, month, day));
-		return this.queryHistoryService.getDaily(year, month, day);
+
+		List<QueryHistory> ls = this.queryHistoryService.getDaily(year, month, day);
+		ArrayList<QueryHistoryDTO> newList = new ArrayList<QueryHistoryDTO>();
+
+		for (QueryHistory queryHistory : ls) {
+			newList.add(modelMapper.map(queryHistory, QueryHistoryDTO.class));
+		}
+
+		return newList;
 	}
 
 	@GetMapping("/monthly/{year}/{month}")
-	public List<QueryHistory> monthly(@PathVariable String year, @PathVariable String month) {
+	public List<QueryHistoryDTO> monthly(@PathVariable String year, @PathVariable String month) {
 		logger.info(String.format("Incoming request -> year: %s, month:%s", year, month));
-		return this.queryHistoryService.getMonthly(year, month);
+		
+		List<QueryHistory> ls = this.queryHistoryService.getMonthly(year, month);
+		ArrayList<QueryHistoryDTO> newList = new ArrayList<QueryHistoryDTO>();
+
+		for (QueryHistory queryHistory : ls) {
+			newList.add(modelMapper.map(queryHistory, QueryHistoryDTO.class));
+		}
+		
+		
+		return newList;
 	}
 
 }
