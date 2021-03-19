@@ -1,6 +1,7 @@
 package com.atilla.exchangerates.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -40,7 +41,7 @@ public class QueryHistoryControler {
 	private final QueryHistoryService queryHistoryService;
 
 	@Autowired
-	private ModelMapper modelMapper;
+	private ModelMapper mapper;
 
 	@Autowired
 	public QueryHistoryControler(QueryHistoryService queryHistoryService) {
@@ -52,28 +53,18 @@ public class QueryHistoryControler {
 			@PathVariable String day) {
 		logger.info(String.format("Incoming request -> year: %s, month:%s, day:%s", year, month, day));
 
-		List<QueryHistory> ls = this.queryHistoryService.getDaily(year, month, day);
-		ArrayList<QueryHistoryDTO> newList = new ArrayList<QueryHistoryDTO>();
+		List<QueryHistory> queryHistoryList = this.queryHistoryService.getDaily(year, month, day);
 
-		for (QueryHistory queryHistory : ls) {
-			newList.add(modelMapper.map(queryHistory, QueryHistoryDTO.class));
-		}
-
-		return newList;
+		return Arrays.asList(mapper.map(queryHistoryList, QueryHistoryDTO[].class));
 	}
 
 	@GetMapping("/monthly/{year}/{month}")
 	public List<QueryHistoryDTO> monthly(@PathVariable String year, @PathVariable String month) {
 		logger.info(String.format("Incoming request -> year: %s, month:%s", year, month));
 
-		List<QueryHistory> ls = this.queryHistoryService.getMonthly(year, month);
-		ArrayList<QueryHistoryDTO> newList = new ArrayList<QueryHistoryDTO>();
+		List<QueryHistory> queryHistoryList = this.queryHistoryService.getMonthly(year, month);
 
-		for (QueryHistory queryHistory : ls) {
-			newList.add(modelMapper.map(queryHistory, QueryHistoryDTO.class));
-		}
-
-		return newList;
+		return Arrays.asList(mapper.map(queryHistoryList, QueryHistoryDTO[].class));
 	}
 
 }
