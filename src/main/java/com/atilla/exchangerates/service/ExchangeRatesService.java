@@ -15,3 +15,4 @@ public interface ExchangeRatesService {
 	RateTrendDTO exchangeRate(String date, CurrencyEnum baseCurrency, CurrencyEnum targetCurrency);
 
 }
+ 

@@ -19,7 +19,7 @@ public class RateListDTO {
 	}
 
 	public RateListDTO() {
-	}
+	} 
 
 	public String getStart_at() {
 		return start_at;

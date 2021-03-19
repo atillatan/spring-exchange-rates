@@ -16,7 +16,7 @@ public class ErrorResponse {
 
 	public ErrorResponse() {
 
-	}
+	} 
 
 	public ErrorResponse(int status, String title, String description, long timeStamp) {
 		this.status = status;

@@ -19,9 +19,9 @@ public class ErrorResponseController implements ErrorController {
 		
 		return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-
+ 
 	@Override
 	public String getErrorPath() {
 		return "/error";
 	}
-}
+} 

@@ -19,7 +19,7 @@ public class RateTrendDTO {
 	// - The average of the five days before the requested date
 	// (excluding Saturday and Sunday )
 	// - and the exchange rate trend.
-
+ 
 	@JsonProperty("exchange_rate")
 	private BigDecimal exchangeRate;
 

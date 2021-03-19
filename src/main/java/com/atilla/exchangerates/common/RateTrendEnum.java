@@ -14,4 +14,4 @@ public enum RateTrendEnum {
 	CONSTANT, // when the exchange rates in the last five days are the same
 	UNDEFINED; // in other cases.
  
-}
+} 

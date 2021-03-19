@@ -11,3 +11,4 @@ public interface RateProvider {
 
 	RateListDTO callProviderApi(CurrencyEnum baseCurrency, String start_at, String end_at);
 }
+ 

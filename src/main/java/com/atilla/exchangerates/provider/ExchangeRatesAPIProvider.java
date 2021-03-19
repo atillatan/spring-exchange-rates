@@ -29,7 +29,7 @@ public class ExchangeRatesAPIProvider extends ThirdPartyProvider implements Rate
 	public ExchangeRatesAPIProvider() {
 
 	} 
-
+ 
 	@Override
 	public RateListDTO callProviderApi(CurrencyEnum baseCurrency, String start_at, String end_at) {
 

@@ -39,14 +39,12 @@ public class QueryHistoryControler {
 
 	private final QueryHistoryService queryHistoryService;
 
-	private final ModelMapper modelMapper=new ModelMapper();
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Autowired
-	public QueryHistoryControler(QueryHistoryService queryHistoryService
-			//, ModelMapper modelMapper
-			) {
+	public QueryHistoryControler(QueryHistoryService queryHistoryService) {
 		this.queryHistoryService = queryHistoryService;
-		//this.modelMapper = modelMapper;
 	}
 
 	@GetMapping("/daily/{year}/{month}/{day}")
@@ -67,15 +65,14 @@ public class QueryHistoryControler {
 	@GetMapping("/monthly/{year}/{month}")
 	public List<QueryHistoryDTO> monthly(@PathVariable String year, @PathVariable String month) {
 		logger.info(String.format("Incoming request -> year: %s, month:%s", year, month));
-		
+
 		List<QueryHistory> ls = this.queryHistoryService.getMonthly(year, month);
 		ArrayList<QueryHistoryDTO> newList = new ArrayList<QueryHistoryDTO>();
 
 		for (QueryHistory queryHistory : ls) {
 			newList.add(modelMapper.map(queryHistory, QueryHistoryDTO.class));
 		}
-		
-		
+
 		return newList;
 	}
 

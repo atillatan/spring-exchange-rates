@@ -18,7 +18,7 @@ public class RateDTO {
 
 	public RateDTO() {
 	}
-
+ 
 	public RateDTO(Long id, CurrencyEnum baseCurrency, String date, EnumMap<CurrencyEnum, BigDecimal> rates) {
 		super();
 		this.baseCurrency = baseCurrency;

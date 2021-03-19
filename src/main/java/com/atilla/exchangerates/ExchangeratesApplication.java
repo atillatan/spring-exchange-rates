@@ -19,5 +19,5 @@ public class ExchangeratesApplication {
 		ApplicationContext context = SpringApplication.run(ExchangeratesApplication.class, args);
 		logger.info("Server started");
 	}
-
+ 
 }

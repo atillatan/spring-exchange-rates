@@ -37,7 +37,7 @@ public class ExceptionControllerAdvice extends ResponseEntityExceptionHandler {
 	public ResponseEntity<ErrorResponse> error(final IllegalArgumentException exception) {
 		return error(exception, HttpStatus.NOT_ACCEPTABLE);
 	}
-
+  
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorResponse> error(final Exception exception) {
 		return error(exception, HttpStatus.INTERNAL_SERVER_ERROR);

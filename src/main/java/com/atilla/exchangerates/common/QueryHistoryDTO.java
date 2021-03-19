@@ -23,7 +23,7 @@ public class QueryHistoryDTO {
 
 	public QueryHistoryDTO() {
 	}
-
+ 
 	public QueryHistoryDTO(Long id, String date, String baseCurrency, String targetCurrency, LocalDateTime createDate,
 			BigDecimal exchangeRate) {
 		super();

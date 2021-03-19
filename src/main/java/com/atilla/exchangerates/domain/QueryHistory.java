@@ -26,7 +26,7 @@ import javax.persistence.Table;
  * @author atilla
  *
  */
-
+ 
 @Entity
 @Table(name = "QUERY_HISTORY")
 public class QueryHistory {

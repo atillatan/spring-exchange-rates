@@ -50,7 +50,7 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
 		this.rateProvider = rateProvider;
 		this.queryHistoryRepository = queryHistoryRepository;
 		this.timeProvider = timeProvider;
-	}
+	} 
 
 	@Override
 	public RateTrendDTO exchangeRate(String date, CurrencyEnum baseCurrency, CurrencyEnum targetCurrency) {

@@ -34,7 +34,7 @@ import com.atilla.exchangerates.service.ExchangeRatesService;
  * other for the monthly information. ◦ daily:
  * /api/exchange-rate/history/daily/{yyyy}/{MM}/{dd} ◦ monthly:
  * /api/exchange-rate/history/monthly/{yyyy}/{MM}
- * 
+ *  
  * @author atilla
  *
  */

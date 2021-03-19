@@ -44,4 +44,4 @@ public class QueryHistoryServiceImpl implements QueryHistoryService {
 
 	}
 
-}
+} 
