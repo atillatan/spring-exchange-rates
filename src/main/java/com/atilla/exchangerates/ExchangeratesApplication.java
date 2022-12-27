@@ -16,8 +16,8 @@ public class ExchangeratesApplication {
 	private static final Logger logger = LoggerFactory.getLogger(ExchangeratesApplication.class);
 
 	public static void main(String[] args) {
-		ApplicationContext context = SpringApplication.run(ExchangeratesApplication.class, args);
-		logger.info("Server started");
+		ApplicationContext context = SpringApplication.run(ExchangeratesApplication.class, args);	 
+		logger.info("Server started on: "+ context.getStartupDate());
 	}
  
 }
